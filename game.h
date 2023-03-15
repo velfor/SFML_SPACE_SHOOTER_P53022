@@ -1,5 +1,7 @@
 #pragma once
 #include "settings.h"
+#include "meteor.h"
+#include <vector>
 
 class Game {
 public:
@@ -7,6 +9,10 @@ public:
 	Game() {
 		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
 		window.setFramerateLimit(FPS);
+		meteorSprites.reserve(METEORS_QTY);
+		for (int i = 0; i < METEORS_QTY; i++) {
+			meteorSprites.push_back(new Meteor());
+		}
 	}
 
 	void play() {
@@ -21,17 +27,20 @@ public:
 private:
 
 	sf::RenderWindow window;
+	std::vector<Meteor*> meteorSprites;
 
 	void checkEvents() {
-		Event event;
+		sf::Event event;
 		while (window.pollEvent(event)){
-			if (event.type == Event::Closed)
+			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 	}
 
 	void update() {
-
+		for (auto meteor : meteorSprites) {
+			meteor->update();
+		}
 	}
 
 	void checkCollisions() {
@@ -40,6 +49,9 @@ private:
 
 	void draw() {
 		window.clear();
+		for (auto meteor : meteorSprites) {
+			window.draw(meteor->getSprite());
+		}
 		window.display();
 	}
 };
