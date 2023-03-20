@@ -1,6 +1,7 @@
 #pragma once
 #include "settings.h"
 #include "meteor.h"
+#include "player.h"
 #include <vector>
 
 class Game {
@@ -28,6 +29,7 @@ private:
 
 	sf::RenderWindow window;
 	std::vector<Meteor*> meteorSprites;
+	Player player;
 
 	void checkEvents() {
 		sf::Event event;
@@ -41,6 +43,7 @@ private:
 		for (auto meteor : meteorSprites) {
 			meteor->update();
 		}
+		player.update();
 	}
 
 	void checkCollisions() {
@@ -52,6 +55,7 @@ private:
 		for (auto meteor : meteorSprites) {
 			window.draw(meteor->getSprite());
 		}
+		player.draw(window);
 		window.display();
 	}
 };

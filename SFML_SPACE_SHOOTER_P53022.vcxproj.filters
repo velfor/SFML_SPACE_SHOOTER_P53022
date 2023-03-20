@@ -32,5 +32,8 @@
     <ClInclude Include="meteor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="laser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -39,6 +39,7 @@ public:
 
 	sf::Sprite& getSprite() { return sprite; }
 };
+
 std::string Meteor::textureFileNames[] =
 {
 	"meteorBrown_big1.png","meteorBrown_big2.png",
