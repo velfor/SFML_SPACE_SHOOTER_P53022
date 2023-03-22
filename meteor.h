@@ -38,6 +38,8 @@ public:
 	}
 
 	sf::Sprite& getSprite() { return sprite; }
+
+	sf::FloatRect getHitBox() { return sprite.getGlobalBounds(); }
 };
 
 std::string Meteor::textureFileNames[] =

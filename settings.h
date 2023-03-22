@@ -13,3 +13,4 @@ const int METEORS_QTY{ 20 };
 
 const std::string LASER_FILE_NAME{ "laserRed03.png" };
 const float LASER_SPEED = -15.f;
+const int FIRE_COOLDOWN = 200;

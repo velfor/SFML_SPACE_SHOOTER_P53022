@@ -47,7 +47,15 @@ private:
 	}
 
 	void checkCollisions() {
-
+		sf::FloatRect playerBounds = player.getHitBox();
+		for (auto& meteor : meteorSprites) {
+			sf::FloatRect meteorBounds = meteor->getHitBox();
+			if (meteorBounds.intersects(playerBounds)) {
+				//переспавнить этот метеорит
+				//отнять хп у игрока
+				
+			}
+		}
 	}
 
 	void draw() {
