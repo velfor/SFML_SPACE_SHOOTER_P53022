@@ -2,6 +2,7 @@
 #include <list>
 #include "settings.h"
 #include "laser.h"
+#include "textobj.h"
 
 class Player {
 private:
@@ -10,15 +11,20 @@ private:
 	float speedx;
 	std::list<Laser*> laserSprites;
 	sf::Clock timer;
+	int hp;
+	TextObj hpText;
 
 public:
-	Player() {
+	Player() : hpText(std::to_string(hp), sf::Vector2f{0.f, 0.f})
+	{
 		texture.loadFromFile(IMAGES_FOLDER + PLAYER_FILE_NAME);
 		sprite.setTexture(texture);
 		sprite.setPosition(PLAYER_START_POS);
 		speedx = 0.f;
 		timer.restart();
+		hp = 100;
 	}
+
 	void fire() {
 		int now = timer.getElapsedTime().asMilliseconds();
 		if (now > FIRE_COOLDOWN) {
@@ -40,6 +46,7 @@ public:
 		for (auto laser : laserSprites) {
 			laser->update();
 		}
+		hpText.update("HP:" + std::to_string(hp));
 	}
 
 	void draw(sf::RenderWindow& window) {
@@ -47,10 +54,16 @@ public:
 			window.draw(laser->getSprite());
 		}
 		window.draw(sprite);
+		hpText.draw(window);
 	}
 
 	sf::FloatRect getHitBox() { return sprite.getGlobalBounds(); }
 	
+	int getHp() { return hp; }
+
+	bool isAlive() { return hp > 0; }
+
+	void decreaseHp(int damage) { hp -= damage; }
 };
 
 

@@ -17,9 +17,10 @@ public:
 	}
 
 	void play() {
-		while (window.isOpen()) {
+		while (window.isOpen() && player.isAlive()) {
 			checkEvents();
 			update();
+			//if (player.getHp() <= 0) game_state = GAME_OVER;
 			checkCollisions();
 			draw();
 		}
@@ -51,9 +52,8 @@ private:
 		for (auto& meteor : meteorSprites) {
 			sf::FloatRect meteorBounds = meteor->getHitBox();
 			if (meteorBounds.intersects(playerBounds)) {
-				//переспавнить этот метеорит
-				//отнять хп у игрока
-				
+				meteor->spawn();
+				player.decreaseHp(meteor->getDamage());
 			}
 		}
 	}

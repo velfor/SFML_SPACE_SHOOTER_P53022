@@ -35,5 +35,8 @@
     <ClInclude Include="laser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="textobj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
