@@ -60,9 +60,17 @@ private:
 				sf::FloatRect laserBounds = laser->getHitBox();
 				if (meteorBounds.intersects(laserBounds)) {
 					meteor->spawn();
+					laser->setHit();
+				}
+				if (laser->getPosition().y < -laserBounds.height)
+				{
+					laser->setHit();
 				}
 			}
+			(*laserSprites).remove_if([](Laser* laser) {
+				return laser->isHit(); });
 		}
+
 	}
 
 	void draw() {
