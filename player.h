@@ -64,6 +64,8 @@ public:
 	bool isAlive() { return hp > 0; }
 
 	void decreaseHp(int damage) { hp -= damage; }
+
+	std::list<Laser*>* getLaserSprites() { return &laserSprites; }
 };
 
 

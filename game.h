@@ -55,6 +55,13 @@ private:
 				meteor->spawn();
 				player.decreaseHp(meteor->getDamage());
 			}
+			auto laserSprites = player.getLaserSprites();
+			for (auto& laser : *laserSprites) {
+				sf::FloatRect laserBounds = laser->getHitBox();
+				if (meteorBounds.intersects(laserBounds)) {
+					meteor->spawn();
+				}
+			}
 		}
 	}
 

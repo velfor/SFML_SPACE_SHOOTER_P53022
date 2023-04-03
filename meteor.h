@@ -21,9 +21,9 @@ public:
 
 	void spawn() {
 		float meteorWidth = sprite.getLocalBounds().width;
-		float x = rand() % (int)(WINDOW_WIDTH - meteorWidth);
-		float y = rand() % (int)(WINDOW_HEIGHT / 2) -
-			WINDOW_HEIGHT / 2;
+		float x = (float)(rand() % (int)(WINDOW_WIDTH - meteorWidth));
+		float y = (float)(rand() % (int)(WINDOW_HEIGHT / 2) -
+			WINDOW_HEIGHT / 2);
 		sprite.setPosition(x, y);
 		speedx = rand() % 5 - 2;
 		speedy = rand() % 6 + 3;
