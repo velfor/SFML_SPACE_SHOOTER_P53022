@@ -3,6 +3,7 @@
 #include "meteor.h"
 #include "player.h"
 #include <vector>
+#include "bonus.h"
 
 class Game {
 public:
@@ -27,9 +28,9 @@ public:
 	}
 
 private:
-
 	sf::RenderWindow window;
 	std::vector<Meteor*> meteorSprites;
+	std::list<Bonus*> bonusSprites;
 	Player player;
 
 	void checkEvents() {

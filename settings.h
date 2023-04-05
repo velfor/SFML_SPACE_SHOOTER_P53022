@@ -12,8 +12,11 @@ const sf::Vector2f PLAYER_START_POS{WINDOW_WIDTH/2, WINDOW_HEIGHT/2};
 const int METEORS_QTY{ 20 };
 
 const std::string LASER_FILE_NAME{ "laserRed03.png" };
-const float LASER_SPEED = -15.f;
-const int FIRE_COOLDOWN = 200;
+const float LASER_SPEED{ -15.f };
+const int FIRE_COOLDOWN{ 200 };
 
-const std::string FONT_FILE_NAME = "DS-DIGIB.ttf";
-const int FONT_SIZE = 32;
+const std::string FONT_FILE_NAME{ "DS-DIGIB.ttf" };
+const int FONT_SIZE{ 32 };
+
+const std::string MULTI_LASER_BONUS_FILE_NAME{ "things_gold.png" };
+const float BONUS_SPEED{ 15.f };
