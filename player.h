@@ -8,11 +8,12 @@ class Player {
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
-	float speedx;
+	float speedx = 0.f;
 	std::list<Laser*> laserSprites;
 	sf::Clock timer;
-	int hp;
+	int hp = 100;
 	TextObj hpText;
+	bool threeLasersActive = false;
 
 public:
 	Player() : hpText(std::to_string(hp), sf::Vector2f{0.f, 0.f})
@@ -20,9 +21,7 @@ public:
 		texture.loadFromFile(IMAGES_FOLDER + PLAYER_FILE_NAME);
 		sprite.setTexture(texture);
 		sprite.setPosition(PLAYER_START_POS);
-		speedx = 0.f;
 		timer.restart();
-		hp = 100;
 	}
 
 	void fire() {
@@ -66,6 +65,12 @@ public:
 	void decreaseHp(int damage) { hp -= damage; }
 
 	std::list<Laser*>* getLaserSprites() { return &laserSprites; }
+
+	void activateThreeLasers() { threeLasersActive = true; }
+
+	void deactivateThreeLasers() { threeLasersActive = false; }
+
+	bool isThreeLasersActive() { return threeLasersActive; }
 };
 
 

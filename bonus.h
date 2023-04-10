@@ -11,6 +11,8 @@ public:
 	sf::Vector2f getPosition();
 	void setDel();
 	bool isToDel();
+	BonusType getType();
+	void act(Player& player);
 
 
 private:
@@ -42,3 +44,14 @@ sf::Vector2f Bonus::getPosition() { return sprite.getPosition(); }
 bool Bonus::isToDel() { return del; }
 
 void Bonus::setDel() { del = true; }
+
+Bonus::BonusType Bonus::getType() { return type; }
+
+void Bonus::act(Player& player){
+	switch (type) {
+	case Bonus::MULTI_LASER:
+		player.activateThreeLasers();
+		break;
+	}
+}
+

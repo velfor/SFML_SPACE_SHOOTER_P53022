@@ -45,6 +45,8 @@ public:
 	sf::FloatRect getHitBox() { return sprite.getGlobalBounds(); }
 
 	int getDamage() { return damage; }
+
+	sf::Vector2f getPosition() { return sprite.getPosition(); }
 };
 
 std::string Meteor::textureFileNames[] =

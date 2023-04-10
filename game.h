@@ -6,8 +6,8 @@
 #include "bonus.h"
 
 class Game {
-public:
 
+public:
 	Game() {
 		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
 		window.setFramerateLimit(FPS);
@@ -42,35 +42,63 @@ private:
 	}
 
 	void update() {
-		for (auto meteor : meteorSprites) {
+		for (auto& meteor : meteorSprites) {
 			meteor->update();
 		}
 		player.update();
+		for (auto& bonus : bonusSprites) {
+			bonus->update();
+		}
 	}
 
 	void checkCollisions() {
 		sf::FloatRect playerBounds = player.getHitBox();
+		auto laserSprites = player.getLaserSprites();
 		for (auto& meteor : meteorSprites) {
 			sf::FloatRect meteorBounds = meteor->getHitBox();
 			if (meteorBounds.intersects(playerBounds)) {
 				meteor->spawn();
 				player.decreaseHp(meteor->getDamage());
 			}
-			auto laserSprites = player.getLaserSprites();
 			for (auto& laser : *laserSprites) {
 				sf::FloatRect laserBounds = laser->getHitBox();
 				if (meteorBounds.intersects(laserBounds)) {
 					meteor->spawn();
 					laser->setHit();
+					//с каким-то шансом появляется бонус
+					size_t chance = rand() % 30001;
+					if (chance < 1500) {
+						//генерируем бонус
+						//дописать выбор типа бонуса
+						//выделяем память и создаем объект класса
+						Bonus* bonus = new Bonus(
+							Bonus::BonusType::MULTI_LASER,
+							meteor->getPosition()
+						);
+						bonusSprites.push_back(bonus);
+					}
 				}
 				if (laser->getPosition().y < -laserBounds.height)
 				{
 					laser->setHit();
 				}
 			}
-			(*laserSprites).remove_if([](Laser* laser) {
-				return laser->isHit(); });
 		}
+		(*laserSprites).remove_if([](Laser* laser) {
+			return laser->isHit(); });
+		for (auto& bonus : bonusSprites) {
+			sf::FloatRect bonusBounds = bonus->getHitBox();
+			if (bonusBounds.intersects(playerBounds)) {
+					bonus->act(player);
+					bonus->setDel();
+			}
+			if (bonusBounds.top > WINDOW_HEIGHT) {
+				bonus->setDel();
+			}
+			
+		}
+		bonusSprites.remove_if([](Bonus* bonus) { 
+			return bonus->isToDel(); });
 
 	}
 
@@ -80,6 +108,9 @@ private:
 			window.draw(meteor->getSprite());
 		}
 		player.draw(window);
+		for (auto& bonus : bonusSprites) {
+			bonus->draw(window);
+		}
 		window.display();
 	}
 };
