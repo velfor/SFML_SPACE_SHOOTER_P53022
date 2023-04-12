@@ -26,7 +26,7 @@ public:
 			WINDOW_HEIGHT / 2);
 		sprite.setPosition(x, y);
 		speedx = rand() % 5 - 2;
-		speedy = rand() % 6 + 3;
+		speedy = rand() % 5 + 2;
 	}
 
 	void update() {

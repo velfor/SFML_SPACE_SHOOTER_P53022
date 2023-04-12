@@ -8,7 +8,9 @@ const size_t FPS{ 60 };
 
 const std::string IMAGES_FOLDER{ "images\\" };
 const std::string PLAYER_FILE_NAME{"playerShip2_orange.png"};
-const sf::Vector2f PLAYER_START_POS{WINDOW_WIDTH/2, WINDOW_HEIGHT/2};
+const sf::Vector2f PLAYER_START_POS{WINDOW_WIDTH/2, WINDOW_HEIGHT - 100.f};
+const float PLAYER_SPEED{ 10.f };
+
 const int METEORS_QTY{ 20 };
 
 const std::string LASER_FILE_NAME{ "laserRed03.png" };
@@ -20,6 +22,7 @@ const int FONT_SIZE{ 32 };
 
 const std::string MULTI_LASER_BONUS_FILE_NAME{ "things_gold.png" };
 const float BONUS_SPEED{ 15.f };
+const int THREE_LASERS_BONUS_COOLDOWN{ 10000 };
 
 const std::string HP_BONUS_FILE_NAME{"pill_yellow.png"};
 size_t HEAL{ 25 };

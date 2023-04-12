@@ -67,7 +67,7 @@ private:
 					laser->setHit();
 					//с каким-то шансом появляется бонус
 					size_t chance = rand() % 30001;
-					if (chance < 1500) {
+					if (chance < 15000) {
 						//генерируем бонус
 						//ИСПРАВИТЬ 2 НА КОЛ-ВО БОНУСОВ КОГДА ДОДЕЛАЕМ
 						size_t bonusType = rand() % 2;
