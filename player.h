@@ -64,6 +64,8 @@ public:
 
 	void decreaseHp(int damage) { hp -= damage; }
 
+	void increaseHp(int heal) { hp += heal; }
+
 	std::list<Laser*>* getLaserSprites() { return &laserSprites; }
 
 	void activateThreeLasers() { threeLasersActive = true; }

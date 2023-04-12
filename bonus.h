@@ -23,14 +23,17 @@ private:
 };
 
 Bonus::Bonus(BonusType type, sf::Vector2f position) {
+	this->type = type;
 	switch (type) {
 	case MULTI_LASER:
-		this->type = type;
 		texture.loadFromFile(IMAGES_FOLDER + MULTI_LASER_BONUS_FILE_NAME);
-		sprite.setTexture(texture);
-		sprite.setPosition(position);
+		break;
+	case HP:
+		texture.loadFromFile(IMAGES_FOLDER + HP_BONUS_FILE_NAME);
 		break;
 	}
+	sprite.setTexture(texture);
+	sprite.setPosition(position);
 }
 
 void Bonus::update() { sprite.move(0.f, BONUS_SPEED); }
@@ -49,8 +52,11 @@ Bonus::BonusType Bonus::getType() { return type; }
 
 void Bonus::act(Player& player){
 	switch (type) {
-	case Bonus::MULTI_LASER:
+	case MULTI_LASER:
 		player.activateThreeLasers();
+		break;
+	case HP:
+		player.increaseHp(HEAL);
 		break;
 	}
 }

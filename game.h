@@ -69,10 +69,11 @@ private:
 					size_t chance = rand() % 30001;
 					if (chance < 1500) {
 						//ãåíåðèðóåì áîíóñ
-						//äîïèñàòü âûáîð òèïà áîíóñà
+						//ÈÑÏÐÀÂÈÒÜ 2 ÍÀ ÊÎË-ÂÎ ÁÎÍÓÑÎÂ ÊÎÃÄÀ ÄÎÄÅËÀÅÌ
+						size_t bonusType = rand() % 2;
 						//âûäåëÿåì ïàìÿòü è ñîçäàåì îáúåêò êëàññà
 						Bonus* bonus = new Bonus(
-							Bonus::BonusType::MULTI_LASER,
+							(Bonus::BonusType)bonusType,
 							meteor->getPosition()
 						);
 						bonusSprites.push_back(bonus);
