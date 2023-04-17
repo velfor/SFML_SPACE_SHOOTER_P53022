@@ -3,6 +3,7 @@
 #include "settings.h"
 #include "laser.h"
 #include "textobj.h"
+#include "shield.h"
 
 class Player {
 private:
@@ -16,9 +17,12 @@ private:
 	bool threeLasersActive = false;
 	int currTimeFire, prevTimeFire;
 	int currTimeThreeLasersBonus, prevTimeThreeLasersBonus;
+	Shield shield;
+	bool shieldIsActive = false;
 
 public:
-	Player() : hpText(std::to_string(hp), sf::Vector2f{0.f, 0.f})
+	Player() : hpText(std::to_string(hp), sf::Vector2f{0.f, 0.f}),
+		shield(sf::Vector2f{WINDOW_WIDTH/2, WINDOW_HEIGHT + 140.f})
 	{
 		texture.loadFromFile(IMAGES_FOLDER + PLAYER_FILE_NAME);
 		sprite.setTexture(texture);
@@ -55,12 +59,7 @@ public:
 			}
 		}
 
-		if (threeLasersActive) {
-			currTimeThreeLasersBonus = timer.getElapsedTime().asMilliseconds();
-			if (currTimeThreeLasersBonus - prevTimeThreeLasersBonus > THREE_LASERS_BONUS_COOLDOWN) {
-				threeLasersActive = false;
-			}
-		}
+		
 	}
 
 	void update() {
@@ -77,13 +76,27 @@ public:
 			laser->update();
 		}
 		hpText.update("HP:" + std::to_string(hp));
+				
 		if (threeLasersActive) {
-			prevTimeThreeLasersBonus = 
-				timer.getElapsedTime().asMilliseconds();
+			currTimeThreeLasersBonus = timer.getElapsedTime().asMilliseconds();
+			if (currTimeThreeLasersBonus - prevTimeThreeLasersBonus > THREE_LASERS_BONUS_COOLDOWN)
+			{
+				deactivateThreeLasers();
+			}
 		}
+		sf::Vector2f shieldPos;
+		if (shieldIsActive) {
+			auto playerBounds = getHitBox();
+			shieldPos = sf::Vector2f{playerBounds.left + playerBounds.width/2, playerBounds.top + playerBounds.height / 2 };
+		}
+		else{
+			shieldPos = sf::Vector2f{ WINDOW_WIDTH / 2, WINDOW_HEIGHT + 140.f };
+		}
+		shield.setPosition(shieldPos);
 	}
 
 	void draw(sf::RenderWindow& window) {
+		shield.draw(window);
 		for (const auto& laser : laserSprites) {
 			window.draw(laser->getSprite());
 		}
@@ -103,11 +116,16 @@ public:
 
 	std::list<Laser*>* getLaserSprites() { return &laserSprites; }
 
-	void activateThreeLasers() { threeLasersActive = true; }
+	void activateThreeLasers() { 
+		threeLasersActive = true;
+		prevTimeThreeLasersBonus = timer.getElapsedTime().asMilliseconds();
+	}
 
 	void deactivateThreeLasers() { threeLasersActive = false; }
 
 	bool isThreeLasersActive() { return threeLasersActive; }
+
+	void activateShield() { shieldIsActive = true; }
 };
 
 

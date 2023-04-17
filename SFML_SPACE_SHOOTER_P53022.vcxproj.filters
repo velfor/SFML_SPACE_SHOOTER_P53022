@@ -41,5 +41,8 @@
     <ClInclude Include="bonus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="shield.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿  main.cpp
-D:\forvel\SFML_SPACE_SHOOTER_P53022\meteor.h(13,11): warning C4244:  'initializing': conversion from 'int' to 'float', possible loss of data
-D:\forvel\SFML_SPACE_SHOOTER_P53022\meteor.h(17,23): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-D:\forvel\SFML_SPACE_SHOOTER_P53022\meteor.h(18,23): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-D:\forvel\SFML_SPACE_SHOOTER_P53022\game.h(11,45): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
-D:\forvel\SFML_SPACE_SHOOTER_P53022\game.h(11,31): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\forvel\SFML_SPACE_SHOOTER_P53022\meteor.h(28,23): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+D:\forvel\SFML_SPACE_SHOOTER_P53022\meteor.h(29,23): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+D:\forvel\SFML_SPACE_SHOOTER_P53022\bonus.h(62,25): warning C4267:  'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\forvel\SFML_SPACE_SHOOTER_P53022\game.h(12,45): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+D:\forvel\SFML_SPACE_SHOOTER_P53022\game.h(12,31): warning C4244:  'argument': conversion from 'const float' to 'unsigned int', possible loss of data
   SFML_SPACE_SHOOTER_P53022.vcxproj -> D:\forvel\SFML_SPACE_SHOOTER_P53022\x64\Debug\SFML_SPACE_SHOOTER_P53022.exe

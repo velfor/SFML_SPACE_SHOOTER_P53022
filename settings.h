@@ -22,7 +22,8 @@ const int FONT_SIZE{ 32 };
 
 const std::string MULTI_LASER_BONUS_FILE_NAME{ "things_gold.png" };
 const float BONUS_SPEED{ 15.f };
-const int THREE_LASERS_BONUS_COOLDOWN{ 10000 };
-
+const int THREE_LASERS_BONUS_COOLDOWN{ 1000 };
 const std::string HP_BONUS_FILE_NAME{"pill_yellow.png"};
 size_t HEAL{ 25 };
+const std::string SHIELD_BONUS_FILE_NAME{ "shield_gold.png" };
+const std::string SHIELD_FILE_NAME{ "shield3.png" };

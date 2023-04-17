@@ -70,7 +70,7 @@ private:
 					if (chance < 15000) {
 						//ãåíåðèðóåì áîíóñ
 						//ÈÑÏÐÀÂÈÒÜ 2 ÍÀ ÊÎË-ÂÎ ÁÎÍÓÑÎÂ ÊÎÃÄÀ ÄÎÄÅËÀÅÌ
-						size_t bonusType = rand() % 2;
+						size_t bonusType = rand() % Bonus::BonusType::TYPES_QTY;
 						//âûäåëÿåì ïàìÿòü è ñîçäàåì îáúåêò êëàññà
 						Bonus* bonus = new Bonus(
 							(Bonus::BonusType)bonusType,
@@ -87,6 +87,7 @@ private:
 		}
 		(*laserSprites).remove_if([](Laser* laser) {
 			return laser->isHit(); });
+
 		for (auto& bonus : bonusSprites) {
 			sf::FloatRect bonusBounds = bonus->getHitBox();
 			if (bonusBounds.intersects(playerBounds)) {

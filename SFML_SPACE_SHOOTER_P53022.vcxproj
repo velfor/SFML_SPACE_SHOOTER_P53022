@@ -127,11 +127,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bonus.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="laser.h" />
     <ClInclude Include="meteor.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="settings.h" />
+    <ClInclude Include="shield.h" />
     <ClInclude Include="textobj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
