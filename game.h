@@ -54,6 +54,23 @@ private:
 	void checkCollisions() {
 		sf::FloatRect playerBounds = player.getHitBox();
 		auto laserSprites = player.getLaserSprites();
+		//метеоры со щитом
+		//если щит активен
+		if (player.shieldIsActive()) {
+			//получить границы щита
+			sf::FloatRect shieldBounds = player.getShieldHitBox();
+			//идем по хранилищу метеоров
+			for (auto& meteor : meteorSprites) {
+				//получаем границы текущего метеора
+				sf::FloatRect meteorBounds = meteor->getHitBox();
+				//если метеор пересекается со щитом
+				if (meteorBounds.intersects(shieldBounds)) {
+					//метеор уходит на новую случайную позицию
+					meteor->spawn();
+				}
+			}
+
+		}
 		for (auto& meteor : meteorSprites) {
 			sf::FloatRect meteorBounds = meteor->getHitBox();
 			if (meteorBounds.intersects(playerBounds)) {

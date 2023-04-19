@@ -27,3 +27,5 @@ const std::string HP_BONUS_FILE_NAME{"pill_yellow.png"};
 size_t HEAL{ 25 };
 const std::string SHIELD_BONUS_FILE_NAME{ "shield_gold.png" };
 const std::string SHIELD_FILE_NAME{ "shield3.png" };
+
+const int SHIELD_OPERATING_TIME{ 5000 };
